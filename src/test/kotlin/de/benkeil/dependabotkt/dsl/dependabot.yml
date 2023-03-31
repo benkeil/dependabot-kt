@@ -1,0 +1,33 @@
+version: 2
+
+registries:
+  maven-github:
+    type: maven-repository
+    url: https://maven.pkg.github.com/benkeil/library
+    username: dependabot
+    password: ${{secrets.DEPENDABOT_TOKEN}}
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      # Do not trigger the pipeline, because there are no changes in the code
+      prefix: "[skip ci]"
+      include: "scope"
+
+  - package-ecosystem: "gradle"
+    directory: "/"
+    registries:
+      - maven-github
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "fix"
+      include: "scope"
+    ignore:
+      - dependency-name: "kafka-clients"
+      - dependency-name: "com.hashicorp:cdktf-provider-vault"
+      - dependency-name: "org.springframework.boot"
+      - dependency-name: "org.springframework.cloud"

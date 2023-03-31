@@ -1,0 +1,46 @@
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+.idea
+*.ipr
+*.iml
+*.iws
+
+# NetBeans
+nb-configuration.xml
+
+# Visual Studio Code
+.vscode
+.factorypath
+
+# OSX
+.DS_Store
+
+# Vim
+*.swp
+*.swo
+
+# patch
+*.orig
+*.rej
+
+# Local environment
+.env
+/schema-registry.properties
+/out/
+/reports/
+
+.terraform
+cdktf.out
+cdktf.log
+*terraform.*.tfstate*
+
+target/
+/code/reports/

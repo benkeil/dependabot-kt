@@ -1,0 +1,45 @@
+name: publish
+on:
+  workflow_call:
+
+permissions: write-all
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: corretto
+          java-version: "11"
+      - uses: gradle/gradle-build-action@v2
+      - run: ./gradlew check
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          junit_files: "**/build/test-results/**/*.xml"
+  publish:
+    needs: [check]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: corretto
+          java-version: "11"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: gradle/gradle-build-action@v2
+      - run: |
+          npm install -g \
+            semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/exec \
+            @semantic-release/git
+      - run: npx semantic-release
+        env:
+          GITHUB_MVN_REGISTRY_USERNAME: ${{ github.actor }}
+          GITHUB_MVN_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
