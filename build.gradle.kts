@@ -16,19 +16,19 @@ plugins {
   `maven-publish`
 }
 
-gradlePlugin {
-  plugins {
-    create("dependabotkt") {
-      id = "de.benkeil.dependabotkt"
-      implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
-      displayName = "Dependabot Plugin"
-      description = "TBD"
-      tags.addAll("github", "dependabot", "dsl")
-      website.set("https://github.com/benkeil/dependabot-kt")
-      vcsUrl.set("https://github.com/benkeil/dependabot-kt")
-    }
-  }
-}
+//gradlePlugin {
+//  plugins {
+//    create("dependabotkt") {
+//      id = "de.benkeil.dependabotkt"
+//      implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
+//      displayName = "Dependabot Plugin"
+//      description = "TBD"
+//      tags.addAll("github", "dependabot", "dsl")
+//      website.set("https://github.com/benkeil/dependabot-kt")
+//      vcsUrl.set("https://github.com/benkeil/dependabot-kt.git")
+//    }
+//  }
+//}
 
 tasks.withType<ShadowJar> {
   archiveClassifier.set("")
