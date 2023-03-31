@@ -19,6 +19,7 @@ gradlePlugin {
       id = "de.benkeil.dependabotkt"
       displayName = "Dependabot Plugin"
       description = "TBD"
+      tags.addAll("github", "dependabot", "dsl")
       implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
     }
   }
