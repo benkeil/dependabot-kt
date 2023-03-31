@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/benkeil/dependabot-kt/compare/v1.0.7...v1.0.8) (2023-03-31)
+
+
+### Bug Fixes
+
+* remove credentials ([a4a18e2](https://github.com/benkeil/dependabot-kt/commit/a4a18e2c2801dadfb638e1c28787bb9b265b9c47))
+
 ## [1.0.7](https://github.com/benkeil/dependabot-kt/compare/v1.0.6...v1.0.7) (2023-03-31)
 
 
