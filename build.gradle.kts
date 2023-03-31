@@ -2,6 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "de.benkeil"
+
 version = semver.info
 
 plugins {
@@ -13,36 +14,32 @@ plugins {
   id("com.github.johnrengelman.shadow") version "8.1.1"
   id("java-gradle-plugin")
   idea
-  `maven-publish`
+  //  `maven-publish`
 }
 
-//gradlePlugin {
-//  plugins {
-//    create("dependabotkt") {
-//      id = "de.benkeil.dependabotkt"
-//      implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
-//      displayName = "Dependabot Plugin"
-//      description = "TBD"
-//      tags.addAll("github", "dependabot", "dsl")
-//      website.set("https://github.com/benkeil/dependabot-kt")
-//      vcsUrl.set("https://github.com/benkeil/dependabot-kt.git")
-//    }
-//  }
-//}
-
-tasks.withType<ShadowJar> {
-  archiveClassifier.set("")
+gradlePlugin {
+  website.set("https://github.com/benkeil/dependabot-kt")
+  vcsUrl.set("https://github.com/benkeil/dependabot-kt.git")
+  plugins {
+    create("dependabotkt") {
+      id = "$group.dependabotkt"
+      implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
+      displayName = "Dependabot Plugin"
+      description = "TBD"
+      tags.addAll("github", "dependabot", "kotlin", "dsl")
+    }
+  }
 }
 
-repositories {
-  mavenCentral()
-}
+tasks.withType<ShadowJar> { archiveClassifier.set("") }
+
+repositories { mavenCentral() }
 
 publishing {
   repositories {
     maven {
-      name = "GitHubPackages"
-      url = uri("https://maven.pkg.github.com/benkeil/${project.name}")
+      name = project.name
+      url = uri("https://maven.pkg.github.com/benkeil/dependabot-kt")
       credentials {
         username = System.getenv("GITHUB_MVN_REGISTRY_USERNAME")
         password = System.getenv("GITHUB_MVN_REGISTRY_TOKEN")
@@ -52,6 +49,7 @@ publishing {
   publications {
     register<MavenPublication>("gpr") {
       from(components["java"])
+      description = "TBD"
     }
   }
 }
@@ -97,13 +95,9 @@ tasks.withType<KotlinCompile> {
   }
 }
 
-tasks.withType<Test> {
-  useJUnitPlatform()
-}
+tasks.withType<Test> { useJUnitPlatform() }
 
-tasks.withType<Javadoc> {
-  isFailOnError = false
-}
+tasks.withType<Javadoc> { isFailOnError = false }
 
 ktfmt {
   maxWidth.set(130)
