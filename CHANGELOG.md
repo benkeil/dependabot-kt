@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/benkeil/dependabot-kt/compare/v1.0.1...v1.0.2) (2023-03-31)
+
+
+### Bug Fixes
+
+* publishing process ([8ec9652](https://github.com/benkeil/dependabot-kt/commit/8ec9652b9bdb5fc4606289708646636f380d2c7f))
+
 ## [1.0.1](https://github.com/benkeil/dependabot-kt/compare/v1.0.0...v1.0.1) (2023-03-31)
 
 
