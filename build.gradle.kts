@@ -46,7 +46,7 @@ publishing {
   }
 }
 
-val javaVersion = JavaVersion.VERSION_17
+val javaVersion = JavaVersion.VERSION_11
 
 dependencies {
   // gradle
