@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/benkeil/dependabot-kt/compare/v1.0.4...v1.0.5) (2023-03-31)
+
+
+### Bug Fixes
+
+* add vcs url ([1235b76](https://github.com/benkeil/dependabot-kt/commit/1235b763f7a469c72a1ed35e6eb5d91551d27cf0))
+
 ## [1.0.4](https://github.com/benkeil/dependabot-kt/compare/v1.0.3...v1.0.4) (2023-03-31)
 
 
