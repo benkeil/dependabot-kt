@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/benkeil/dependabot-kt/compare/v1.0.0...v1.0.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* add README ([ce7e53d](https://github.com/benkeil/dependabot-kt/commit/ce7e53df0084b8aaabb7b7ce038bf89a55160010))
+
 # 1.0.0 (2023-03-31)
 
 
