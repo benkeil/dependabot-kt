@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "de.benkeil"
@@ -8,6 +9,8 @@ plugins {
   kotlin("plugin.serialization") version "1.8.10"
   id("com.ncorti.ktfmt.gradle") version "0.11.0"
   id("io.wusa.semver-git-plugin") version "2.3.7"
+  id("com.gradle.plugin-publish") version "1.1.0"
+  id("com.github.johnrengelman.shadow") version "8.1.1"
   id("java-gradle-plugin")
   idea
   `maven-publish`
@@ -23,6 +26,10 @@ gradlePlugin {
       implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
     }
   }
+}
+
+tasks.withType<ShadowJar> {
+  archiveClassifier.set("")
 }
 
 repositories {
