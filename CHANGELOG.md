@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/benkeil/dependabot-kt/compare/v1.0.3...v1.0.4) (2023-03-31)
+
+
+### Bug Fixes
+
+* add website ([4b7f450](https://github.com/benkeil/dependabot-kt/commit/4b7f45052511d145aef59d33b138105b06fe263d))
+
 ## [1.0.3](https://github.com/benkeil/dependabot-kt/compare/v1.0.2...v1.0.3) (2023-03-31)
 
 
