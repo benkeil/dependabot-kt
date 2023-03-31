@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/benkeil/dependabot-kt/compare/v1.0.2...v1.0.3) (2023-03-31)
+
+
+### Bug Fixes
+
+* add com.gradle.plugin-publish plugin ([af8ec0d](https://github.com/benkeil/dependabot-kt/commit/af8ec0d2c729e734eead3f4eb424941de3e42e7b))
+
 ## [1.0.2](https://github.com/benkeil/dependabot-kt/compare/v1.0.1...v1.0.2) (2023-03-31)
 
 
