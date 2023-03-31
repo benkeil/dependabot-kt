@@ -1,0 +1,5 @@
+publish-local:
+	./gradlew publishDependabotktPluginMarkerMavenPublicationToMavenLocal
+
+publish-registry:
+	./gradlew publishDependabotktPluginMarkerMavenPublicationToDependabotktRepository
