@@ -25,6 +25,7 @@ gradlePlugin {
       description = "TBD"
       tags.addAll("github", "dependabot", "dsl")
       website.set("https://github.com/benkeil/dependabot-kt")
+      vcsUrl.set("https://github.com/benkeil/dependabot-kt")
     }
   }
 }
