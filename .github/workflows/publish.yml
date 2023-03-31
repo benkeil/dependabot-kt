@@ -1,6 +1,9 @@
 name: publish
+
 on:
-  workflow_call:
+  push:
+    branches:
+      - "main"
 
 permissions: write-all
 
