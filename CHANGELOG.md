@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/benkeil/dependabot-kt/compare/v1.0.8...v1.0.9) (2023-03-31)
+
+
+### Bug Fixes
+
+* use secrets in pipeline ([ae6e01f](https://github.com/benkeil/dependabot-kt/commit/ae6e01f59a383e1dd9d20d70a7575ed414ac7a7a))
+
 ## [1.0.8](https://github.com/benkeil/dependabot-kt/compare/v1.0.7...v1.0.8) (2023-03-31)
 
 
