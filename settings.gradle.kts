@@ -15,7 +15,7 @@ pluginManagement {
 
 plugins {
   id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.5"
-//  id("de.benkeil.dependabotkt") version "1.0.5-dirty-SNAPSHOT"
+//  id("de.benkeil.dependabotkt") version "1.0.5"
 }
 
 rootProject.name = "dependabotkt"

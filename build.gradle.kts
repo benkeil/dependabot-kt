@@ -13,19 +13,19 @@ plugins {
   id("com.gradle.plugin-publish") version "1.1.0"
   id("com.github.johnrengelman.shadow") version "8.1.1"
   id("java-gradle-plugin")
-  idea
-  //  `maven-publish`
+  id("maven-publish")
+  id("idea")
 }
 
 gradlePlugin {
   website.set("https://github.com/benkeil/dependabot-kt")
-  vcsUrl.set("https://github.com/benkeil/dependabot-kt.git")
+  vcsUrl.set("https://github.com/benkeil/dependabot-kt")
   plugins {
     create("dependabotkt") {
       id = "$group.dependabotkt"
       implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
       displayName = "Dependabot Plugin"
-      description = "TBD"
+      description = "Define dependabot.yml configurations with a Kotlin DSL and reusable blocks"
       tags.addAll("github", "dependabot", "kotlin", "dsl")
     }
   }
@@ -35,24 +35,24 @@ tasks.withType<ShadowJar> { archiveClassifier.set("") }
 
 repositories { mavenCentral() }
 
-publishing {
-  repositories {
-    maven {
-      name = project.name
-      url = uri("https://maven.pkg.github.com/benkeil/dependabot-kt")
-      credentials {
-        username = System.getenv("GITHUB_MVN_REGISTRY_USERNAME")
-        password = System.getenv("GITHUB_MVN_REGISTRY_TOKEN")
-      }
-    }
-  }
-  publications {
-    register<MavenPublication>("gpr") {
-      from(components["java"])
-      description = "TBD"
-    }
-  }
-}
+//publishing {
+//  repositories {
+//    maven {
+//      name = project.name
+//      url = uri("https://maven.pkg.github.com/benkeil/dependabot-kt")
+//      credentials {
+//        username = System.getenv("GITHUB_MVN_REGISTRY_USERNAME")
+//        password = System.getenv("GITHUB_MVN_REGISTRY_TOKEN")
+//      }
+//    }
+//  }
+//  publications {
+//    register<MavenPublication>("gpr") {
+//      from(components["java"])
+//      description = "TBD"
+//    }
+//  }
+//}
 
 val javaVersion = JavaVersion.VERSION_11
 
