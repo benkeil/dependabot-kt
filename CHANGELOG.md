@@ -1,3 +1,11 @@
+## [1.0.10](https://github.com/benkeil/dependabot-kt/compare/v1.0.9...v1.0.10) (2023-04-02)
+
+
+### Bug Fixes
+
+* make local maven repository working ([99c79b3](https://github.com/benkeil/dependabot-kt/commit/99c79b33da1975e53dfca49ac353096a72cf6887))
+* prepare build ([7ae8df4](https://github.com/benkeil/dependabot-kt/commit/7ae8df45909ada8115a0180098adeff3d75531fe))
+
 ## [1.0.9](https://github.com/benkeil/dependabot-kt/compare/v1.0.8...v1.0.9) (2023-03-31)
 
 
