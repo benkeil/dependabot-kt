@@ -1,5 +1,5 @@
-//import de.benkeil.dependabotkt.dsl.PackageSystem
-//import de.benkeil.dependabotkt.dsl.Schedule
+import de.benkeil.dependabotkt.dsl.PackageSystem
+import de.benkeil.dependabotkt.dsl.Schedule
 
 pluginManagement {
   repositories {
@@ -18,7 +18,7 @@ pluginManagement {
 
 plugins {
   id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.5"
-//  id("de.benkeil.dependabotkt") version "1.0.8-dirty-SNAPSHOT"
+  id("de.benkeil.dependabotkt") version "1.0.10"
 }
 
 rootProject.name = "dependabot-kt"
@@ -29,28 +29,28 @@ gitHooks {
   createHooks(true)
 }
 
-//dependabot {
-//  override = true
-//  registries { gitHubMaven { slug = "benkeil/dependabot-kt" } }
-//  updates {
-//    update {
-//      packageEcosystem = PackageSystem.Gradle
-//      directory = "/"
-//      registries { retrieve("benkeil/dependabot-kt") }
-//      schedule = Schedule.Daily()
-//      commitMessage {
-//        prefix = "fix"
-//        include = "scope"
-//      }
-//    }
-//    update {
-//      packageEcosystem = PackageSystem.GitHubActions
-//      directory = "/"
-//      schedule = Schedule.Daily()
-//      commitMessage {
-//        prefix = "[skip ci]"
-//        include = "scope"
-//      }
-//    }
-//  }
-//}
+dependabot {
+  override = true
+  registries { gitHubMaven { slug = "benkeil/dependabot-kt" } }
+  updates {
+    update {
+      packageEcosystem = PackageSystem.Gradle
+      directory = "/"
+      registries { retrieveAllByType() }
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "fix"
+        include = "scope"
+      }
+    }
+    update {
+      packageEcosystem = PackageSystem.GitHubActions
+      directory = "/"
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "[skip ci]"
+        include = "scope"
+      }
+    }
+  }
+}
