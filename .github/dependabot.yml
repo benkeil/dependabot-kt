@@ -1,0 +1,26 @@
+version: 2
+registries:
+  benkeil/dependabot-kt:
+    type: maven-repository
+    url: https://maven.pkg.github.com/benkeil/dependabot-kt
+    username: dependabot
+    password: "${{ secrets.DEPENDABOT_TOKEN }}"
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      timezone: Asia/Bangkok
+      interval: daily
+    commit-message:
+      prefix: "[skip ci]"
+      include: scope
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      timezone: Asia/Bangkok
+      interval: daily
+    registries:
+      - benkeil/dependabot-kt
+    commit-message:
+      prefix: fix
+      include: scope

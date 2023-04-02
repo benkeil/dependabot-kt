@@ -1,4 +1,4 @@
-package de.benkeil.dependabotkt.extensions
+package de.benkeil.dependabotkt.extension
 
 import java.nio.file.Path
 import kotlin.io.path.absolute

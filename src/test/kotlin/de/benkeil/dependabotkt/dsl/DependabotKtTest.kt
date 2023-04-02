@@ -105,6 +105,37 @@ class DependabotKtTest :
               .also(::println)
         }
 
+        test("retrieve registries") {
+          dependabot {
+                registries {
+                  docker {
+                    name = "docker-1"
+                    url = "https:docker-1.com"
+                  }
+                  docker {
+                    name = "docker-2"
+                    url = "https:docker-2.com"
+                  }
+                  gitHubMaven { slug = "benkeil/repo-1" }
+                  gitHubMaven { slug = "benkeil/repo-2" }
+                }
+                updates {
+                  update {
+                    packageEcosystem = PackageSystem.Docker
+                    directory = "/"
+                    registries { retrieveAllByType() }
+                  }
+                  update {
+                    packageEcosystem = PackageSystem.Gradle
+                    directory = "/"
+                    registries { retrieveAllByType() }
+                  }
+                }
+              }
+              .toYaml()
+              .also(::println)
+        }
+
         test("define a service dependabot.yaml") { println(defaultService().toYaml()) }
 
         test("define a service dependabot.yaml with ignores") {

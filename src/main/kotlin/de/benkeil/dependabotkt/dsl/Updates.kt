@@ -34,7 +34,7 @@ class UpdateContext(private val usedRegistries: Map<String, Registry>?) {
   private var pullRequestBranchName: PullRequestBranchNameContext? = null
 
   fun registries(block: UpdateRegistriesContext.() -> Unit) {
-    registries = UpdateRegistriesContext(usedRegistries).apply(block).build()
+    registries = UpdateRegistriesContext(packageEcosystem, usedRegistries).apply(block).build()
   }
 
   fun commitMessage(block: CommitMessageContext.() -> Unit) {
@@ -122,7 +122,7 @@ class CommitMessageContext {
 
 @Serializable
 @DependabotDslMarker
-class UpdateRegistriesContext(private val usedRegistries: Map<String, Registry>?) {
+class UpdateRegistriesContext(private val packageEcosystem: PackageSystem, private val usedRegistries: Map<String, Registry>?) {
   private val registries = mutableListOf<String>()
   fun retrieve(name: String) {
     if (usedRegistries.isNullOrEmpty()) {
@@ -132,6 +132,14 @@ class UpdateRegistriesContext(private val usedRegistries: Map<String, Registry>?
       throw RuntimeException("registry $name not configured in registries block")
     }
     registries.add(name)
+  }
+
+  fun retrieveAllByType(registryType: RegistryType) {
+    usedRegistries?.values?.filter { it.type == registryType }?.map { it.name }?.also { registries.addAll(it) }
+  }
+
+  fun retrieveAllByType() {
+    packageEcosystem.registryType?.apply(::retrieveAllByType)
   }
 
   internal fun build() = registries.toList()
@@ -166,6 +174,32 @@ enum class PackageSystem(private val value: String) {
     return value
   }
 }
+
+val PackageSystem.registryType: RegistryType?
+  get() =
+      when (this) {
+        PackageSystem.Bundler -> null
+        PackageSystem.Cargo -> null
+        PackageSystem.Composer -> RegistryType.NpmRegistry
+        PackageSystem.Docker -> RegistryType.DockerRegistry
+        PackageSystem.Hex -> RegistryType.HexRepository
+        PackageSystem.ElmPackage -> null
+        PackageSystem.Git -> RegistryType.Git
+        PackageSystem.GitHub -> RegistryType.Git
+        PackageSystem.GitHubActions -> RegistryType.Git
+        PackageSystem.Go -> null
+        PackageSystem.Gradle -> RegistryType.MavenRepository
+        PackageSystem.Maven -> RegistryType.MavenRepository
+        PackageSystem.Npm -> RegistryType.NpmRegistry
+        PackageSystem.NuGet -> RegistryType.NugetFeed
+        PackageSystem.Pip -> RegistryType.PythonIndex
+        PackageSystem.Pipenv -> RegistryType.PythonIndex
+        PackageSystem.PipCompile -> RegistryType.PythonIndex
+        PackageSystem.Poetry -> RegistryType.PythonIndex
+        PackageSystem.Pub -> null
+        PackageSystem.Terraform -> RegistryType.TerraformRegistry
+        PackageSystem.Yarn -> RegistryType.NpmRegistry
+      }
 
 @Serializable
 sealed class Schedule(val interval: String) {

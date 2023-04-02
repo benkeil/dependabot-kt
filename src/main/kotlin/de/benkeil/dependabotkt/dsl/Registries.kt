@@ -11,14 +11,13 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.encodeStructure
 
-@Serializable open class Registry(open val type: RegistryType, @JsonIgnore open val name: String)
+@Serializable sealed class Registry(val type: RegistryType, @JsonIgnore val name: String)
 
-class Serde : KSerializer<DefaultRepository> {
+class DefaultRepositoryKSerializer : KSerializer<DefaultRepository> {
   override val descriptor: SerialDescriptor
     get() =
         buildClassSerialDescriptor("DefaultRepository") {
           element("type", String.serializer().descriptor)
-          element("name", String.serializer().descriptor)
           element("url", String.serializer().descriptor)
           element("username", String.serializer().descriptor)
           element("password", String.serializer().descriptor)
@@ -32,7 +31,6 @@ class Serde : KSerializer<DefaultRepository> {
   override fun serialize(encoder: Encoder, value: DefaultRepository) =
       encoder.encodeStructure(descriptor) {
         encodeStringElement(descriptor, 0, value.type.toString())
-        encodeStringElement(descriptor, 1, value.name)
         encodeStringElement(descriptor, 2, value.url)
         value.username?.let { encodeStringElement(descriptor, 3, it) }
         value.password?.let { encodeStringElement(descriptor, 4, it) }
@@ -40,10 +38,10 @@ class Serde : KSerializer<DefaultRepository> {
       }
 }
 
-@Serializable(with = Serde::class)
+@Serializable(with = DefaultRepositoryKSerializer::class)
 class DefaultRepository(
-    override val type: RegistryType,
-    override val name: String,
+    type: RegistryType,
+    name: String,
     val url: String,
     val username: String? = null,
     val password: String? = null,

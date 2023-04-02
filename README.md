@@ -2,10 +2,43 @@
 
 ## Example
 
-Use this library to write your own package with reusable dependabot definitions.
+### Use it directly in your project
+
+**settings.gradle.kts**
 
 ```kotlin
-fun defaultService(
+val repositorySlugs = listOf("benkeil/dependabot-kt")
+dependabot {
+  override = true
+  registries { repositorySlugs.map { gitHubMaven { slug = it } } }
+  updates {
+    update {
+      packageEcosystem = PackageSystem.Gradle
+      directory = "/"
+      registries { repositorySlugs.map { retrieve(it) } }
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "fix"
+        include = "scope"
+      }
+    }
+    update {
+      packageEcosystem = PackageSystem.GitHubActions
+      directory = "/"
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "[skip ci]"
+        include = "scope"
+      }
+    }
+  }
+}
+```
+
+### Write your own library with reusable dependabot definitions
+
+```kotlin
+fun DependabotContext.defaultService(
     repositorySlugs: Collection<String> = listOf("owner/repo"),
     block: (IgnoreContext.() -> Unit)? = null
 ) = dependabot {
@@ -40,12 +73,16 @@ Include your library in your service and use it.
 **settings.gradle.kts** in **Service A**
 
 ```kotlin
+import your.pacjage.defaultService
+
 dependabot { defaultService() }
 ```
 
 **settings.gradle.kts** in **Service B**
 
 ```kotlin
+import your.pacjage.defaultService
+
 dependabot {
   defaultService {
     dependency {
@@ -59,6 +96,8 @@ dependabot {
 **settings.gradle.kts** in **Service C**
 
 ```kotlin
+import your.pacjage.defaultService
+
 dependabot {
   defaultService {
     dependency { name = "com.hashicorp:cdktf-provider-vault" }

@@ -1,3 +1,6 @@
+import de.benkeil.dependabotkt.dsl.PackageSystem
+import de.benkeil.dependabotkt.dsl.Schedule
+
 pluginManagement {
   repositories {
     mavenLocal()
@@ -15,14 +18,39 @@ pluginManagement {
 
 plugins {
   id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.1.5"
-//  id("de.benkeil.dependabotkt") version "1.0.7-dirty-SNAPSHOT"
-//  apply { id("de.benkeil.dependabotkt") }
+  id("de.benkeil.dependabotkt") version "1.0.8-dirty-SNAPSHOT"
 }
 
-rootProject.name = "dependabotkt"
+rootProject.name = "dependabot-kt"
 
 gitHooks {
   commitMsg { conventionalCommits() }
   preCommit { from { "./gradlew ktfmtCheck" } }
   createHooks(true)
+}
+
+dependabot {
+  override = true
+  registries { gitHubMaven { slug = "benkeil/dependabot-kt" } }
+  updates {
+    update {
+      packageEcosystem = PackageSystem.Gradle
+      directory = "/"
+      registries { retrieve("benkeil/dependabot-kt") }
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "fix"
+        include = "scope"
+      }
+    }
+    update {
+      packageEcosystem = PackageSystem.GitHubActions
+      directory = "/"
+      schedule = Schedule.Daily()
+      commitMessage {
+        prefix = "[skip ci]"
+        include = "scope"
+      }
+    }
+  }
 }
