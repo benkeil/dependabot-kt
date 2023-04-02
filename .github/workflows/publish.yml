@@ -18,6 +18,9 @@ jobs:
           java-version: "11"
       - uses: gradle/gradle-build-action@v2
       - run: ./gradlew check
+        env:
+          GITHUB_MVN_REGISTRY_USERNAME: ${{ github.actor }}
+          GITHUB_MVN_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
