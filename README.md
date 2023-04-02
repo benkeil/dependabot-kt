@@ -1,5 +1,19 @@
 # dependabot-kt
 
+## Usage
+
+**settings.gradle.kts**
+
+```kotlin
+plugins {
+  id("de.benkeil.dependabotkt") version "VERSION"
+}
+
+dependabot {
+  ...
+}
+```
+
 ## Example
 
 ### Use it directly in your project
@@ -13,7 +27,7 @@ dependabot {
   registries { repositorySlugs.map { gitHubMaven { slug = it } } }
   updates {
     update {
-      packageEcosystem = PackageSystem.Gradle
+      pkgEcosystem = pkgSystem.Gradle
       directory = "/"
       registries { repositorySlugs.map { retrieve(it) } }
       schedule = Schedule.Daily()
@@ -23,7 +37,7 @@ dependabot {
       }
     }
     update {
-      packageEcosystem = PackageSystem.GitHubActions
+      pkgEcosystem = pkgSystem.GitHubActions
       directory = "/"
       schedule = Schedule.Daily()
       commitMessage {
@@ -45,7 +59,7 @@ fun DependabotContext.defaultService(
   registries { repositorySlugs.map { gitHubMaven { slug = it } } }
   updates {
     update {
-      packageEcosystem = PackageSystem.Gradle
+      pkgEcosystem = pkgSystem.Gradle
       directory = "/"
       registries { repositorySlugs.map { retrieve(it) } }
       schedule = Schedule.Daily()
@@ -56,7 +70,7 @@ fun DependabotContext.defaultService(
       ignore { block?.invoke(this) }
     }
     update {
-      packageEcosystem = PackageSystem.GitHubActions
+      pkgEcosystem = pkgSystem.GitHubActions
       directory = "/"
       schedule = Schedule.Daily()
       commitMessage {
@@ -68,12 +82,12 @@ fun DependabotContext.defaultService(
 }
 ```
 
-Include your library in your service and use it.
+Include your library in your service and use it
 
 **settings.gradle.kts** in **Service A**
 
 ```kotlin
-import your.pacjage.defaultService
+import your.pkg.defaultService
 
 dependabot { defaultService() }
 ```
@@ -81,7 +95,7 @@ dependabot { defaultService() }
 **settings.gradle.kts** in **Service B**
 
 ```kotlin
-import your.pacjage.defaultService
+import your.pkg.defaultService
 
 dependabot {
   defaultService {
@@ -96,7 +110,7 @@ dependabot {
 **settings.gradle.kts** in **Service C**
 
 ```kotlin
-import your.pacjage.defaultService
+import your.pkg.defaultService
 
 dependabot {
   defaultService {

@@ -49,7 +49,7 @@ publishing {
   publications {
     register<MavenPublication>("gpr") {
       from(components["java"])
-      description = "TBD"
+      description = "Create dependabot.yml configurations with a Kotlin DSL and reusable blocks"
       groupId = "$group.dependabotkt"
     }
   }
