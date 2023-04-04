@@ -1,3 +1,11 @@
+## [1.0.22](https://github.com/benkeil/dependabot-kt/compare/v1.0.21...v1.0.22) (2023-04-04)
+
+
+### Bug Fixes
+
+* activate checks again ([b18dfcc](https://github.com/benkeil/dependabot-kt/commit/b18dfccb92ee034b5067c71876387f302b51f994))
+* change jvm level settings ([d410751](https://github.com/benkeil/dependabot-kt/commit/d41075177c16d2cfc87a29e298200cd3f659c1c7))
+
 ## [1.0.21](https://github.com/benkeil/dependabot-kt/compare/v1.0.20...v1.0.21) (2023-04-04)
 
 
