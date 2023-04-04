@@ -1,10 +1,10 @@
 package de.benkeil.dependabotkt.gradle
 
+import de.benkeil.dependabotkt.test.extension.deleteOnExit
 import io.kotest.core.spec.style.FunSpec
 import java.nio.file.Files
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.createDirectories
-import kotlin.io.path.deleteRecursively
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.gradle.testkit.runner.GradleRunner
@@ -13,7 +13,9 @@ import org.gradle.testkit.runner.GradleRunner
 class DependabotPluginTest :
     FunSpec({
       test("configure plugin") {
-        val projectDir = withContext(Dispatchers.IO) { Files.createTempDirectory("") }
+        println(">> createTempDirectory")
+        val projectDir = withContext(Dispatchers.IO) { Files.createTempDirectory("").deleteOnExit() }
+        println(">> created")
         projectDir.resolve(".git").createDirectories()
         projectDir
             .resolve("settings.gradle.kts")
@@ -21,7 +23,7 @@ class DependabotPluginTest :
             .writeText(
                 """
         plugins {
-          id("de.benkeil.dependabotkt")
+          id("io.github.benkeil.dependabotkt")
         }
 
         dependabot {
@@ -41,7 +43,6 @@ class DependabotPluginTest :
                 .build()
 
         println(result.output)
-
-        projectDir.deleteRecursively()
+        println(">> finished")
       }
     })

@@ -22,7 +22,7 @@ gradlePlugin {
   vcsUrl.set("https://github.com/benkeil/dependabot-kt")
   plugins {
     create("dependabotkt") {
-      id = "$group.dependabotkt"
+      id = "io.github.benkeil.dependabotkt"
       implementationClass = "de.benkeil.dependabotkt.gradle.DependabotPlugin"
       displayName = "Dependabot Plugin"
       description = "Create dependabot.yml configurations with a Kotlin DSL and reusable blocks"
