@@ -10,11 +10,5 @@ version:
 publish-local:
 	./gradlew publishPluginMavenPublicationToMavenLocal publishDependabotktPluginMarkerMavenPublicationToMavenLocal
 
-publish-github:
-	./gradlew publishAllPublicationsToGithubRepository
-
-publish-plugin:
-	./gradlew publishPlugins
-
 publish:
-	./gradlew publishAllPublicationsToGithubRepository publishPlugins
+	./gradlew publishPlugins

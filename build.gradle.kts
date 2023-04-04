@@ -35,28 +35,6 @@ tasks.withType<ShadowJar> { archiveClassifier.set("") }
 
 repositories { mavenCentral() }
 
-publishing {
-  repositories {
-    maven {
-      name = "github"
-      url = uri("https://maven.pkg.github.com/benkeil/${project.name}")
-      credentials {
-        username = System.getenv("GITHUB_MVN_REGISTRY_USERNAME")
-        password = System.getenv("GITHUB_MVN_REGISTRY_TOKEN")
-      }
-    }
-  }
-  publications {
-    register<MavenPublication>("gpr") {
-      from(components["java"])
-      description = "Create dependabot.yml configurations with a Kotlin DSL and reusable blocks"
-      groupId = "io.github.benkeil.dependabotkt"
-    }
-  }
-}
-
-val javaVersion = JavaVersion.VERSION_1_8
-
 dependencies {
   // gradle
   api(gradleApi())
@@ -82,15 +60,15 @@ dependencies {
 }
 
 java {
-  sourceCompatibility = javaVersion
-  targetCompatibility = javaVersion
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_1_8
   withJavadocJar()
   withSourcesJar()
 }
 
 tasks.withType<KotlinCompile> {
   with(kotlinOptions) {
-    jvmTarget = javaVersion.toString()
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
     javaParameters = true
     freeCompilerArgs += "-Xcontext-receivers"
   }
