@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/benkeil/dependabot-kt/compare/v1.0.12...v1.0.13) (2023-04-04)
+
+
+### Bug Fixes
+
+* change release step order ([8bead6e](https://github.com/benkeil/dependabot-kt/commit/8bead6e5206b8b2c41ddcc0480439787eee88952))
+
 ## [1.0.12](https://github.com/benkeil/dependabot-kt/compare/v1.0.11...v1.0.12) (2023-04-04)
 
 
