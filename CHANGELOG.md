@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/benkeil/dependabot-kt/compare/v1.0.11...v1.0.12) (2023-04-04)
+
+
+### Bug Fixes
+
+* plugin id ([6a867a6](https://github.com/benkeil/dependabot-kt/commit/6a867a695290a9fcc2e7ef51668d55aae041d1bd))
+
 ## [1.0.11](https://github.com/benkeil/dependabot-kt/compare/v1.0.10...v1.0.11) (2023-04-04)
 
 
