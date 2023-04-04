@@ -106,6 +106,7 @@ ktfmt {
 }
 
 semver {
+  println(System.getenv())
   System.getenv()["GITHUB_ACTIONS"]?.let {
     snapshotSuffix = "SNAPSHOT"
     dirtyMarker = "dirty"
