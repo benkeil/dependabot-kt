@@ -4,14 +4,14 @@ clean:
 build:
 	./gradlew shadowJar
 
-rm:
-	rm -rf /Users/ben/.m2/repository/de/benkeil
+version:
+	./gradlew showVersion
 
 publish-local:
 	./gradlew publishPluginMavenPublicationToMavenLocal publishDependabotktPluginMarkerMavenPublicationToMavenLocal
 
 publish-github:
-	./gradlew publishPluginMavenPublicationToGithubRepository publishDependabotktPluginMarkerMavenPublicationToGithubRepository
+	./gradlew publishAllPublicationsToGithubRepository
 
 publish-plugin:
 	./gradlew publishPlugins
