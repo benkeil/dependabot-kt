@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-group = "de.benkeil"
+group = "io.github.benkeil"
 
 version = semver.info
 
@@ -110,16 +110,13 @@ semver {
     snapshotSuffix = ""
     dirtyMarker = ""
   }
-  initialVersion = "0.1.0" // (default) initial version in semantic versioning
-  tagPrefix = "v" // (default) each project can have its own tags identified by a unique prefix.
-  tagType = io.wusa.TagType.LIGHTWEIGHT // (default) options are Annotated or Lightweight
-  branches { // list of branch configurations
+  tagPrefix = "v"
+  tagType = io.wusa.TagType.LIGHTWEIGHT
+  branches {
     branch {
-      regex = ".+" // regex for the branch you want to configure, put this one last
-      incrementer = "NO_VERSION_INCREMENTER" // (default) version incrementer
-      formatter = Transformer {
-        "${semver.info.version.major}.${semver.info.version.minor}.${semver.info.version.patch}"
-      }
+      regex = ".+"
+      incrementer = "NO_VERSION_INCREMENTER"
+      formatter = Transformer { "${semver.info.version.major}.${semver.info.version.minor}.${semver.info.version.patch}" }
     }
   }
 }
