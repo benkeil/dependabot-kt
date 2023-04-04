@@ -106,8 +106,10 @@ ktfmt {
 }
 
 semver {
-  snapshotSuffix = "SNAPSHOT" // (default) appended if the commit is without a release tag
-  dirtyMarker = "dirty" // (default) appended if there are uncommitted changes
+  System.getenv()["GITHUB_ACTIONS"]?.let {
+    snapshotSuffix = "SNAPSHOT"
+    dirtyMarker = "dirty"
+  }
   initialVersion = "0.1.0" // (default) initial version in semantic versioning
   tagPrefix = "v" // (default) each project can have its own tags identified by a unique prefix.
   tagType = io.wusa.TagType.LIGHTWEIGHT // (default) options are Annotated or Lightweight
