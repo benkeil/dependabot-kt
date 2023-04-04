@@ -1,3 +1,10 @@
+## [1.0.21](https://github.com/benkeil/dependabot-kt/compare/v1.0.20...v1.0.21) (2023-04-04)
+
+
+### Bug Fixes
+
+* try to publish plugin ([c6eee68](https://github.com/benkeil/dependabot-kt/commit/c6eee686e781ce687de3229ec9c69495ec62b26a))
+
 ## [1.0.20](https://github.com/benkeil/dependabot-kt/compare/v1.0.19...v1.0.20) (2023-04-04)
 
 
