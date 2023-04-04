@@ -15,3 +15,5 @@ publish-github:
 
 publish-plugin:
 	./gradlew publishPlugins
+
+publish: publish-github publish-plugin

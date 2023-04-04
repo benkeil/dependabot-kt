@@ -50,7 +50,7 @@ publishing {
     register<MavenPublication>("gpr") {
       from(components["java"])
       description = "Create dependabot.yml configurations with a Kotlin DSL and reusable blocks"
-      groupId = "$group.dependabotkt"
+      groupId = "io.github.benkeil.dependabotkt"
     }
   }
 }
@@ -108,7 +108,7 @@ ktfmt {
 semver {
   snapshotSuffix = "SNAPSHOT" // (default) appended if the commit is without a release tag
   dirtyMarker = "dirty" // (default) appended if there are uncommitted changes
-  initialVersion = "0.1.22" // (default) initial version in semantic versioning
+  initialVersion = "0.1.0" // (default) initial version in semantic versioning
   tagPrefix = "v" // (default) each project can have its own tags identified by a unique prefix.
   tagType = io.wusa.TagType.LIGHTWEIGHT // (default) options are Annotated or Lightweight
   branches { // list of branch configurations
