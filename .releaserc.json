@@ -7,18 +7,18 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     [
-      "@semantic-release/exec",
-      {
-        "publishCmd": "make publish"
-      }
-    ],
-    [
       "@semantic-release/git",
       {
         "assets": [
           "CHANGELOG.md",
           "gradle.properties"
         ]
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "make publish"
       }
     ]
   ]
