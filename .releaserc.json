@@ -18,7 +18,8 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "git status && make version publish"
+        "prepare": "git status && make version",
+        "publishCmd": "make publish"
       }
     ]
   ]
