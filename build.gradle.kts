@@ -116,7 +116,9 @@ semver {
     branch {
       regex = ".+"
       incrementer = "NO_VERSION_INCREMENTER"
-      formatter = Transformer { "${semver.info.version.major}.${semver.info.version.minor}.${semver.info.version.patch}" }
+      formatter = Transformer {
+        "${semver.info.version.major}.${semver.info.version.minor}.${semver.info.version.patch}"
+      }
     }
   }
 }
