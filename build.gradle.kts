@@ -106,10 +106,9 @@ ktfmt {
 }
 
 semver {
-  println(System.getenv())
-  System.getenv()["GITHUB_ACTIONS"]?.let {
-    snapshotSuffix = "SNAPSHOT"
-    dirtyMarker = "dirty"
+  if (System.getenv()["CI"] == "true") {
+    snapshotSuffix = ""
+    dirtyMarker = ""
   }
   initialVersion = "0.1.0" // (default) initial version in semantic versioning
   tagPrefix = "v" // (default) each project can have its own tags identified by a unique prefix.
